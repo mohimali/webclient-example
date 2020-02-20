@@ -46,7 +46,7 @@ public class MainController {
     }
 
 
-    @GetMapping("/notes")
+    // Just some notes and examples of webclient usages
     public String notes() {
 
         WebClient client1 = WebClient.create();
