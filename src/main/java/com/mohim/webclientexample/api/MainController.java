@@ -1,7 +1,8 @@
 package com.mohim.webclientexample.api;
 
 
-import com.mohim.webclientexample.cloud.TestWebClient;
+import com.mohim.webclientexample.cloud.WebClientExample;
+import com.mohim.webclientexample.domain.Person;
 import lombok.RequiredArgsConstructor;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
@@ -25,12 +26,25 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class MainController {
 
-    private final TestWebClient testWebClient;
+    private final WebClientExample webClientExample;
 
     @GetMapping("/testSendGetRequestToMock")
-    public Mono<String> test(){
-        return testWebClient.sendGetRequestToMock();
+    public Mono<String> testSendGetRequestToMock(){
+        return webClientExample.sendGetRequestToMock();
     }
+
+    @GetMapping("/testSendPostRequestToMock")
+    public Mono<String> testSendPostRequestToMock(){
+
+
+        Person person = Person.builder()
+                .name("Person Name")
+                .age(1)
+                .build();
+
+        return webClientExample.sendPostRequestToMock(person);
+    }
+
 
     @GetMapping("/notes")
     public String notes() {
